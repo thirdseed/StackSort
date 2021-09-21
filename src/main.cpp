@@ -82,7 +82,6 @@ int main()
 			// pass selected file path
 			s1 = StackParse::NLSV2Stack((usr_file_path + '/' + (string)FILEPREFIX + to_string(usr_file_number) + '.' + (string)FILETYPE));
 			
-			/*** do sorting work here ***/
 			// while still having objects to sort
 			while (s1.size() > 0){
 				
@@ -104,14 +103,13 @@ int main()
 			}
 			
 			
-			// uncomment when sorting algorithm is done
-			cout << "Sort result: " << StackParse::Stack2CSV(s2) << "\n";
+			cout << "Sort result: " << StackParse::Stack2CSV(s2) << endl;
 		}
 		
 		// invalid condition
 		else
 		{
-			cout << "File specified is unknown. Please try again.\n";
+			cout << "File specified is unknown. Please try again." << endl;
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}

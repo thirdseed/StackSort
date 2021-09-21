@@ -1,5 +1,3 @@
 # StackSort
 
-Requires the following parameters to build:
-
-`-std=c++11`
+Requires C++ 17 or higher.

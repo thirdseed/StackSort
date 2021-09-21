@@ -1,10 +1,10 @@
 #include "StackParse.h"
 
-std::stack<int> StackParse::NLSV2Stack(std::string file_path)
+std::stack<int> StackParse::NLSV2Stack(std::string &file_path, std::string file_name)
 {
 	using namespace std;
 	
-	ifstream file(file_path);
+	ifstream file(file_path + '/' + file_name);
 	
 	stack<int> out;
 	string line;

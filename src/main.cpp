@@ -80,7 +80,7 @@ int main()
 		else if (find(f_name.begin(), f_name.end(), usr_file_number) != f_name.end())
 		{
 			// pass selected file path
-			s1 = StackParse::NLSV2Stack((usr_file_path + '/' + (string)FILEPREFIX + to_string(usr_file_number) + '.' + (string)FILETYPE));
+			s1 = StackParse::NLSV2Stack(usr_file_path, (string)FILEPREFIX + to_string(usr_file_number) + '.' + (string)FILETYPE);
 			
 			// while still having objects to sort
 			while (s1.size() > 0){

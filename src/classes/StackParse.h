@@ -6,7 +6,7 @@
 class StackParse
 {
 	public:
-		static std::stack<int> NLSV2Stack(std::string);
+		static std::stack<int> NLSV2Stack(std::string&, std::string);
 		static std::string Stack2CSV(std::stack<int>);
 		
 	private:

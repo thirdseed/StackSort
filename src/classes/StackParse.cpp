@@ -11,12 +11,12 @@ std::stack<int> StackParse::NLSV2Stack(std::string file_path)
 		
 	while(getline(file, line))
 	{
-		istringstream iss(line);
+		istringstream ss(line);
 		int n;
 			
-	   	while (iss >> n) out.push(n);
+	   	while (ss >> n) out.push(n);
 	}
-		
+	
 	return out;
 }
 	

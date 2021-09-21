@@ -4,12 +4,17 @@
 #include <iostream>
 #include <limits>
 #include <numeric>
+#include <regex>
 #include <stack>
 #include <string>
+#include <vector>
 
 #include "classes/StackParse.h"
 
-// Number of possible input sets
-#define KNOWN_SETS 10
+// filesystem namespace
+namespace fs = std::filesystem;
+
 // Base file name prefix
 #define FILEPREFIX "in"
+// File extension for input files
+#define FILETYPE "txt"

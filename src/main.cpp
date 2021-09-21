@@ -4,44 +4,87 @@ int main()
 {
 	using namespace std;
 	
-	int usr_input;
+	regex file_name_ptrn = regex("in([0-9]+)\.txt");
 	
-	// create collection of all possible input file name numbers
-	array<int, KNOWN_SETS> f_name;
-	iota(f_name.begin(), f_name.end(), 0);
+	string usr_file_path;
+	int usr_file_number;
+	
+	// to hold a collection of all possible input file name numbers
+	vector<int> f_name;
+	smatch match;
 	
 	// stacks to hold input/output/buffer
 	stack<int> s1, s2, s3;
 	
 	// start engagement
-	cout << "Known files:\n{";
+	cout << "Please enter path to input files:" << endl;
+	while(true)
+	{
+		
+		getline(cin, usr_file_path);
+		
+		if (!fs::exists(usr_file_path))
+		{
+			cout << "\nGiven path does not exist. Please try again:" << endl;
+			continue;
+		}
+		
+		else
+		{
+			for (const auto & entry : fs::directory_iterator(usr_file_path)) {
+	        	//cout << entry.path().filename() << endl;
+	        	
+	        	string curr_file_name = entry.path().filename().string();
+				smatch match;
+				
+				if (regex_search(curr_file_name, match, file_name_ptrn))
+				{
+					f_name.push_back(stoi(match[1]));
+				}
+			}
+		}
+		
+		if (f_name.empty())
+		{
+			cout << "\nInput files could not be discovered at that location. Please try again:" << endl;
+			continue;
+		}
+		
+		else
+		{
+			break;
+		}
+		
+	}
+		 
+	cout << "\nFiles discovered:\n{";
 	for(size_t i = 0; i < f_name.size()-1; ++i)
 	{
 		cout << f_name[i]<< ", ";
 	}
-	cout << f_name[f_name.size()-1] << "}\n";
+	cout << f_name[f_name.size()-1] << '}' << endl;
 	
 	while(true)
 	{
 		
 		cout << "\nEnter the number of the file you wish to open, or enter -1 to quit: ";
-		cin >> usr_input;
+		cin >> usr_file_number;
 		
 		// exit condition
-		if (usr_input == -1)
+		if (usr_file_number == -1)
 		{
 			break;
 		}
 		
-		else if (find(f_name.begin(), f_name.end(), usr_input) != f_name.end())
+		else if (find(f_name.begin(), f_name.end(), usr_file_number) != f_name.end())
 		{
 			// pass selected file path
-			s1 = StackParse::NLSV2Stack("input/" + (string)FILEPREFIX + to_string(usr_input) + ".txt");
+			s1 = StackParse::NLSV2Stack((usr_file_path + '/' + (string)FILEPREFIX + to_string(usr_file_number) + '.' + (string)FILETYPE));
 			
 			/*** do sorting work here ***/
 			
 			// uncomment when sorting algorithm is done
-			//cout << "Sort result: " << StackParse::Stack2CSV(s2) << "\n";
+			// cout << "Sort result: " << StackParse::Stack2CSV(s2) << "\n";
 		}
 		
 		// invalid condition

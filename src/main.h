@@ -1,8 +1,11 @@
 #include <algorithm>
 #include <array>
+#include <filesystem>
 #include <iostream>
 #include <limits>
 #include <numeric>
+#include <stack>
+#include <string>
 
 #include "classes/StackParse.h"
 

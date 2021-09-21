@@ -4,6 +4,7 @@ int main()
 {
 	using namespace std;
 	
+	
 	regex file_name_ptrn = regex("in([0-9]+)\.txt");
 	
 	string usr_file_path;
@@ -82,9 +83,29 @@ int main()
 			s1 = StackParse::NLSV2Stack((usr_file_path + '/' + (string)FILEPREFIX + to_string(usr_file_number) + '.' + (string)FILETYPE));
 			
 			/*** do sorting work here ***/
+			// while still having objects to sort
+			while (s1.size() > 0){
+				
+				// pop s2 to s3 until the top of s1 is greater than s2 
+				while(s1.top() > s2.top()){
+					s3.push(s2.top());
+					s2.pop();
+				}
+				
+				// push top of s1 to s2
+				s2.push(s1.top());
+				s1.pop();
+				
+				// replace what was pushed to s3 back to s2
+				while(s3.size() > 0){
+					s2.push(s3.top());
+					s3.pop();
+				}
+			}
+			
 			
 			// uncomment when sorting algorithm is done
-			// cout << "Sort result: " << StackParse::Stack2CSV(s2) << "\n";
+			cout << "Sort result: " << StackParse::Stack2CSV(s2) << "\n";
 		}
 		
 		// invalid condition

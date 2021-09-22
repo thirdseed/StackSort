@@ -1,5 +1,7 @@
 #include "main.h"
 
+void clearStack(std::stack<int>&);
+
 int main()
 {
 	using namespace std;
@@ -14,7 +16,7 @@ int main()
 	vector<int> f_name;
 	smatch match;
 	
-	// stacks to hold input/output/buffer
+	// stack to hold input
 	stack<int> s1, s2, s3;
 	
 	// start engagement
@@ -79,14 +81,21 @@ int main()
 		
 		else if (find(f_name.begin(), f_name.end(), usr_file_number) != f_name.end())
 		{
+			// clear previous input/output/buffer, if any
+			clearStack(s1);
+			clearStack(s2);
+			clearStack(s3);
+			
 			// pass selected file path
 			s1 = StackParse::NLSV2Stack(usr_file_path, (string)FILEPREFIX + to_string(usr_file_number) + '.' + (string)FILETYPE);
 			
 			// while still having objects to sort
-			while (s1.size() > 0){
+			while (s1.size() > 0)
+			{
 				
 				// pop s2 to s3 until the top of s1 is greater than s2 
-				while(s1.top() > s2.top()){
+				while(s1.top() > s2.top())
+				{
 					s3.push(s2.top());
 					s2.pop();
 				}
@@ -96,14 +105,15 @@ int main()
 				s1.pop();
 				
 				// replace what was pushed to s3 back to s2
-				while(s3.size() > 0){
+				while(s3.size() > 0)
+				{
 					s2.push(s3.top());
 					s3.pop();
 				}
 			}
 			
-			
 			cout << "Sort result: " << StackParse::Stack2CSV(s2) << endl;
+			
 		}
 		
 		// invalid condition
@@ -117,4 +127,11 @@ int main()
 	}
 	
 	return 0;
+}
+
+void clearStack(std::stack<int> &s) {
+	while (!s.empty())
+	{
+		s.pop();
+	}
 }

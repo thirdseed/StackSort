@@ -1,6 +1,6 @@
 # StackSort
 
-A stack-sorting program created for a school project. Implements the stack sorting methodology outlined within the given problems.
+A stack-sorting program created for a school project. Implements the stack sorting methodology outlined within the given problem.
 
 Requires C++ 17 or higher.
 

@@ -89,12 +89,9 @@ int main()
 			// pass selected file path
 			s1 = StackParse::NLSV2Stack(usr_file_path, (string)FILEPREFIX + to_string(usr_file_number) + '.' + (string)FILETYPE);
 			
-			// while still having objects to sort
 			while (s1.size() > 0)
 			{
-				
-				// pop s2 to s3 until the top of s1 is greater than s2 
-				while(s1.top() > s2.top())
+				while(!s2.empty() && s1.top() > s2.top())
 				{
 					s3.push(s2.top());
 					s2.pop();
@@ -113,7 +110,6 @@ int main()
 			}
 			
 			cout << "Sort result: " << StackParse::Stack2CSV(s2) << endl;
-			
 		}
 		
 		// invalid condition

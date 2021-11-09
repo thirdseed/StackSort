@@ -29,11 +29,11 @@ int main()
 		if (!fs::exists(usr_file_path))
 		{
 			cout << "\nGiven path does not exist. Please try again:" << endl;
-			continue;
 		}
 		
 		else
 		{
+			
 			for (const auto & entry : fs::directory_iterator(usr_file_path)) {
 	        	//cout << entry.path().filename() << endl;
 	        	
@@ -45,18 +45,19 @@ int main()
 					f_name.push_back(stoi(match[1]));
 				}
 			}
-		}
+			
+			if (f_name.empty())
+			{
+				cout << "\nInput files could not be discovered at that location. Please try again:" << endl;
+			}
 		
-		if (f_name.empty())
-		{
-			cout << "\nInput files could not be discovered at that location. Please try again:" << endl;
-			continue;
+			else
+			{
+				break;
+			}
+			
 		}
-		
-		else
-		{
-			break;
-		}
+	
 		
 	}
 		 

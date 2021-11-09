@@ -7,7 +7,7 @@ int main()
 	using namespace std;
 	
 	
-	regex file_name_ptrn = regex("in([0-9]+)\.txt");
+	regex file_name_ptrn = regex((string)FILEPREFIX + "([0-9]+)\." + (string)FILETYPE);
 	
 	string usr_file_path;
 	int usr_file_number;
